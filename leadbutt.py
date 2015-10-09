@@ -89,7 +89,10 @@ def output_results(results, metric, options):
 
     TODO: add AMPQ support for efficiency
     """
-    formatter = options['Formatter']
+    try:
+        formatter = metric['Formatter']
+    except KeyError:
+        formatter = options['Formatter']
     context = metric.copy()  # XXX might need to sanitize this
     try:
         context['dimension'] = list(metric['Dimensions'].values())[0]
